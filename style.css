@@ -1,0 +1,1169 @@
+/* --- Core Configurations & Variables --- */
+:root {
+    --bg-color: #1f242d;
+    --second-bg-color: #323946;
+    --text-color: #fff;
+    --main-color: #0ef;
+    --modal-overlay: rgba(0, 0, 0, 0.8);
+    --input-bg: #323946;
+}
+
+[data-theme="light"] {
+    --bg-color: #f4f6f9;
+    --second-bg-color: #ffffff;
+    --text-color: #222222;
+    --main-color: #007bff;
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    --input-bg: #e9ecef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+/* --- Navigation Header --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: .3s;
+}
+
+.header.sticky {
+    border-bottom: .1rem solid rgba(0, 0, 0, .1);
+    background: var(--second-bg-color);
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+    cursor: default;
+}
+
+.logo span {
+    color: var(--main-color);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+#theme-toggle {
+    font-size: 2.2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#theme-toggle:hover {
+    color: var(--main-color);
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+}
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+    cursor: pointer;
+}
+/* --- Components & Buttons --- */
+.heading {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 5rem;
+}
+.heading span {
+    color: var(--main-color);
+}
+.btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color);
+    font-size: 1.6rem;
+    color: #fff;
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5s ease;
+    cursor: pointer;
+}
+.btn:hover {
+    box-shadow: none;
+    opacity: 0.9;
+}
+/* --- Home Section Layout --- */
+/* --- Optimized Screen-Fit Layout for Home Section --- */
+.home {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 3rem !important;
+    padding: 12rem 8% 4rem !important; /* Spacious padding to stay clear of top navigation bar */
+    min-height: 100vh !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important; /* Prevents unwanted horizontal screen scrolling */
+}
+
+/* Constrains your intro text so it shares screen real estate perfectly */
+.home-content {
+    flex: 1 1 55% !important;
+}
+
+/* Picture wrapper that scales down gracefully based on viewport size */
+.home-img-container {
+    flex: 1 1 35% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    max-width: 360px !important; /* Upper limit lock to keep layout neat */
+}
+
+.avatar-screen-fit {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important; /* Enforces a perfect circle shape */
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    border: 4px solid #00eeff !important;
+    box-shadow: 0 0 2.5rem #00eeff !important;
+    transition: transform 0.4s ease !important;
+}
+
+.avatar-screen-fit:hover {
+    transform: scale(1.03) !important;
+}
+/* --- Fix to keep the top of your head perfectly visible --- */
+.avatar-screen-fit {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important; 
+    border-radius: 50% !important;
+    border: 4px solid #00eeff !important;
+    box-shadow: 0 0 2.5rem #00eeff !important;
+    transition: transform 0.4s ease !important;
+    
+    /* THE CHOSEN FIXES */
+    object-fit: cover !important; 
+    object-position: center 15% !important; /* Shifts the camera frame down slightly so your head is fully visible */
+}
+
+/* If the picture still feels slightly cramped or clipped around the edges, 
+   we can add a tiny bit of internal padding to give the head breathing room */
+.home-img-container {
+    padding: 10px !important;
+    box-sizing: border-box !important;
+}
+/* Complete Responsive Breakpoints for Smaller Displays */
+@media (max-width: 920px) {
+    .home {
+        flex-direction: column-reverse !important; /* Safe vertical stack setup */
+        text-align: center !important;
+        justify-content: center !important;
+        padding-top: 15rem !important;
+    }
+    
+    .home-content {
+        flex: 1 1 100% !important;
+    }
+    
+    .home-img-container {
+        flex: 1 1 100% !important;
+        width: 240px !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .social-media {
+        justify-content: center !important;
+    }
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../image/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.home-content h3 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+.home-content h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.home-content p {
+    font-size: 1.6rem;
+    margin-top: 2rem;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 3rem 1.5rem 3rem 0;
+    transition: .5s ease;
+}
+
+.social-media a:hover {
+    background: var(--main-color);
+    color: #fff;
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+/* =========================================================================
+   CUSTOM SOCIAL BRAND HOVER ANIMATION GLOWS 
+   ========================================================================= */
+
+.social-media a.facebook:hover {
+    border-color: #1877f2;
+    background: #1877f2;
+    box-shadow: 0 0 1.5rem #1877f2;
+    color: #fff;
+}
+
+.social-media a.instagram:hover {
+    border-color: #e1306c;
+    background: #e1306c;
+    box-shadow: 0 0 1.5rem #e1306c;
+    color: #fff;
+}
+
+.social-media a.tiktok:hover {
+    border-color: #000000;
+    background: #000000;
+    box-shadow: 0 0 1.5rem #ff0050;
+    color: #fff;
+}
+
+/* Temporary fix to force visibility during testing */
+.scroll-animate {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* --- About Section Layout (Responsive Desktop Optimization) --- */
+.about {
+    min-height: 100vh;           
+    width: 100%;
+    padding: 12rem 9% 12rem;     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    /* Responsive Background Pipeline */
+    background: linear-gradient(rgba(31, 36, 45, 0.88), rgba(31, 36, 45, 0.88)), url('../image/background1.jpg');
+    background-size: cover;       
+    background-position: center;   
+    background-repeat: no-repeat;
+    background-attachment: scroll; 
+}
+
+.about-content {
+    max-width: 1200px;            
+    width: 100%;
+    margin: 0 auto;
+    z-index: 2;                   
+}
+
+.about-content h2 {
+    text-align: left;
+    line-height: 1.2;
+}
+
+.about-content h3 {
+    font-size: 2.6rem;
+}
+
+.about-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   FIXED COMPACT SKILLS SECTION
+   ========================================================================== */
+
+#skills {
+    padding: 10rem 7% 7rem;
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#skills .heading {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 6rem;
+    font-weight: 700;
+}
+
+#skills .heading span {
+    color: var(--main-color, #00eeff);
+}
+
+/* 1. Max-Width Container: Prevents table from stretching too wide on desktops */
+.skills-table-container {
+    max-width: 85rem; /* Locks the width to a comfortable reading size */
+    margin: 0 auto; /* Centers the whole table perfectly on the screen */
+    width: 100%;
+    background: var(--snd-bg-color, #323946);
+    border-radius: 2rem;
+    padding: 2.5rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+/* 2. Structured Table Settings */
+.portfolio-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes clunky double lines between rows */
+    font-size: 1.6rem;
+    text-align: left;
+}
+
+.portfolio-table th {
+    font-weight: 600;
+    color: var(--main-color, #00eeff);
+    padding: 1.8rem 2rem;
+    border-bottom: .2rem solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-table td {
+    padding: 2rem;
+    color: var(--text-color, #fff);
+    border-bottom: .1rem solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+/* Highlight Column Effect */
+.table-highlight {
+    font-weight: 600;
+    color: var(--text-color, #fff);
+    width: 25%; /* Keeps category names uniformly aligned */
+}
+
+/* 3. Compact UI Badges */
+.tech-badge {
+    display: inline-block;
+    padding: 0.6rem 1.6rem;
+    border-radius: 2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Badge Color Definitions */
+.tech-badge.advanced {
+    background: rgba(0, 238, 255, 0.15);
+    color: var(--main-color, #00eeff);
+    border: .1rem solid var(--main-color, #00eeff);
+}
+
+.tech-badge.intermediate {
+    background: rgba(255, 165, 0, 0.15);
+    color: #ffa500;
+    border: .1rem solid #ffa500;
+}
+
+/* ==========================================================================
+   MOBILE & TABLET OPTIMIZATION
+   ========================================================================== */
+@media (max-width: 768px) {
+    #skills {
+        padding: 7rem 4% 5rem;
+    }
+
+    #skills .heading {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .skills-table-container {
+        padding: 1.5rem;
+        overflow-x: auto; /* Adds smooth horizontal scrolling if the screen gets too tiny */
+    }
+
+    .portfolio-table th, 
+    .portfolio-table td {
+        padding: 1.5rem 1rem;
+        font-size: 1.4rem;
+    }
+}
+
+.achievements {
+    background: var(--second-bg-color); /* Alternates background color cleanly */
+}
+
+.skills-table-container, 
+.achievements-table-container {
+    max-width: 90rem;
+    margin: 0 auto;
+    overflow-x: auto; /* Allows smooth horizontal scrolling on tiny mobile screens */
+    border-radius: 2rem;
+    border: .2rem solid var(--main-color);
+    box-shadow: 0 0 1.5rem rgba(0, 238, 255, 0.1);
+}
+
+.portfolio-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.6rem;
+    text-align: left;
+    background: var(--second-bg-color);
+}
+
+.achievements .portfolio-table {
+    background: var(--bg-color); /* Matches alternating design flow */
+}
+
+.portfolio-table th {
+    background: var(--main-color);
+    color: #1f242d; /* High contrast dark text for header */
+    padding: 1.8rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.portfolio-table td {
+    padding: 1.8rem;
+    border-bottom: .1rem solid rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+}
+
+.portfolio-table tr:last-child td {
+    border-bottom: none; /* Removes stray bottom border on final element */
+}
+
+.portfolio-table tr:hover {
+    background: rgba(0, 238, 255, 0.03); /* Subtle neon highlight on hover */
+    transition: background 0.3s ease;
+}
+
+.table-highlight {
+    color: var(--main-color) !important;
+    font-weight: 600;
+}
+
+/* --- Responsive Table Fixes --- */
+@media (max-width: 768px) {
+    .portfolio-table {
+        font-size: 1.4rem;
+    }
+    .portfolio-table th, 
+    .portfolio-table td {
+
+        padding: 1.2rem;
+    }
+}
+/* Styling rules for both modal close button classes */
+.cert-modal-close, 
+.project-modal-close {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    font-size: 4rem;
+    color: var(--text-color, #fff);
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1;
+    z-index: 2100; /* Ensures the (x) button sits cleanly on top of images */
+    transition: color 0.2s, transform 0.2s;
+}
+
+.cert-modal-close:hover, 
+.project-modal-close:hover {
+    color: var(--main-color, #00eeff);
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   FIXED PROJECTS SECTION ARCHITECTURE
+   ========================================================================== */
+
+#projects {
+    padding: 10rem 7% 7rem;
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#projects .heading {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 6rem;
+    font-weight: 700;
+}
+
+#projects .heading span {
+    color: var(--main-color, #00eeff);
+}
+
+/* Flex Container to display cards evenly */
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 120rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Base Card Setup */
+.project-box {
+    flex: 1 1 35rem;
+    max-width: 45rem;
+    background: var(--snd-bg-color, #323946);
+    border-radius: 2rem;
+    overflow: hidden; /* Clips elements inside the clean card corners */
+    border: .2rem solid transparent;
+    transition: all .4s ease-on;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column; /* Stacks image on top, text details on bottom */
+}
+
+.project-box:hover {
+    border-color: var(--main-color, #00eeff);
+    transform: translateY(-1rem);
+}
+
+/* Image Positioning Box */
+.project-img-box {
+    width: 100%;
+    height: 22rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps dimensions centered and clean */
+    transition: transform 0.5s ease;
+}
+
+.project-box:hover .project-img-box img {
+    transform: scale(1.08);
+}
+
+/* Content Information Box */
+.project-info {
+    padding: 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Automatically forces the contents to stretch evenly */
+}
+
+.project-info i {
+    font-size: 3.5rem;
+    color: var(--main-color, #00eeff);
+    margin-bottom: 1.5rem;
+}
+
+.project-info h3 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    color: var(--text-color, #fff);
+}
+
+.project-info p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    color: var(--text-color, #fff);
+    opacity: 0.85;
+}
+
+/* Action View Details Button Styling Setup */
+.project-info .btn {
+    margin-top: auto; /* Pushes the button straight down to lock rows straight across */
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color, #00eeff);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color, #00eeff);
+    font-size: 1.6rem;
+    color: var(--bg-color, #1f242d);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.project-info .btn:hover {
+    box-shadow: none;
+    transform: scale(1.03);
+}
+
+/* Responsive Adaptive Screen Support */
+@media (max-width: 768px) {
+    #projects {
+        padding: 7rem 4% 5rem;
+    }
+    .project-box {
+        flex: 1 1 100%;
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (Mobile and Tablet Optimization)
+   ========================================================================== */
+@media (max-width: 768px) {
+    #projects {
+        padding: 7rem 4% 5rem;
+    }
+    
+    #projects .heading {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+    }
+    
+    .project-box {
+        flex: 1 1 100%; /* Columns stretch into pristine stacked lists on phones */
+        padding: 3rem 2.5rem;
+    }
+}
+
+/* --- Projects Section Layout --- */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.project-box {
+    background: var(--second-bg-color);
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: .2rem solid var(--bg-color);
+    transition: .5s ease;
+}
+
+.project-box:hover {
+    border-color: var(--main-color);
+    transform: translateY(-5px);
+}
+
+.project-box i {
+    font-size: 7rem;
+    color: var(--main-color);
+}
+
+.project-box h3 {
+    font-size: 2.6rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.project-box p {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.project-box {
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    height: 350px; /* Forces boxes to keep an even uniform height layout */
+    background: #1f242d; /* Fallback color matching dark portfolio layouts */
+}
+
+.project-box img.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps images crisp without stretching */
+    transition: .5s ease;
+}
+
+.project-box:hover img.project-img {
+    transform: scale(1.1);
+}
+/* ==========================================================================
+   FIXED COMPACT CONTACT SECTION
+   ========================================================================== */
+
+#contact {
+    padding: 10rem 7% 7rem;
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#contact .heading {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 6rem;
+    font-weight: 700;
+}
+
+#contact .heading span {
+    color: var(--main-color, #00eeff);
+}
+
+/* 1. Max-Width Container: Restricts expansion on wide monitor viewports */
+.contact-form-container {
+    max-width: 85rem; /* Matches your skills table width perfectly */
+    margin: 0 auto; /* Centers the form card container on your page */
+    width: 100%;
+    background: var(--snd-bg-color, #323946);
+    border-radius: 2rem;
+    padding: 4rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+/* 2. Flexbox Rows and Form Group Inputs Layouts */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.input-row {
+    display: flex;
+    gap: 2.5rem;
+    width: 100%;
+}
+
+.input-group {
+    flex: 1; /* Splits side-by-side elements down to 50% width each automatically */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group.full-width {
+    width: 100%;
+}
+
+/* 3. Input and Textarea Control Field Elements Typography Aesthetics */
+.input-group label {
+    font-size: 1.5rem;
+    color: var(--main-color, #00eeff);
+    font-weight: 600;
+    letter-spacing: .05rem;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color, #fff);
+    background: var(--bg-color, #1f242d);
+    border: .15rem solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Subtle glowing stroke focus transitions */
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: var(--main-color, #00eeff);
+}
+
+.input-group textarea {
+    resize: vertical; /* Allows resizing vertically, but locks width scaling securely */
+}
+
+/* 4. Center-Aligned Form Trigger Button Box Layout */
+.form-submit-btn-box {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.form-submit-btn-box .btn {
+    display: inline-block;
+    padding: 1.4rem 3.5rem;
+    background: var(--main-color, #00eeff);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color, #00eeff);
+    font-size: 1.6rem;
+    color: var(--bg-color, #1f242d);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.form-submit-btn-box .btn:hover {
+    box-shadow: none;
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   MOBILE & TABLET OPTIMIZATION
+   ========================================================================== */
+@media (max-width: 768px) {
+    #contact {
+        padding: 7rem 4% 5rem;
+    }
+
+    #contact .heading {
+        font-size: 3.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .contact-form-container {
+        padding: 2.5rem 2rem;
+    }
+
+    .input-row {
+        flex-direction: column; /* Folds side-by-side elements down to clean vertical stacks */
+        gap: 2.5rem;
+    }
+}
+
+/* ==========================================================================
+   POPUP MODAL WINDOW STYLING (Certificates & Projects)
+   ========================================================================== */
+
+/* 1. Modal Overlay Cover */
+.modal {
+    display: none; /* Controlled dynamically by JavaScript (flex when active) */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Ensures it overlays on top of navigation menus */
+    background-color: rgba(27, 31, 39, 0.85); /* Smooth dark overlay tint */
+    backdrop-filter: blur(.8rem); /* Frosty background styling */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* 2. Modal Content Wrapper Box */
+.modal-content-wrapper {
+    position: relative;
+    background: var(--snd-bg-color, #323946);
+    width: 100%;
+    max-width: 65rem; /* Balanced size constraint */
+    border-radius: 2rem;
+    padding: 3.5rem;
+    box-sizing: border-box;
+    border: .2rem solid var(--main-color, #00eeff);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transform: scale(0.9);
+    animation: zoomInModal 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 3. Typography Structures */
+#modal-title, 
+.modal-secured-title {
+    font-size: 2.8rem;
+    color: var(--text-color, #fff);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    letter-spacing: .05rem;
+}
+
+/* 4. Display Images Scaling */
+.modal-img {
+    width: 100%;
+    max-height: 45rem;
+    object-fit: contain; /* Keeps documents and frames from cropping skew paths */
+    border-radius: 1.2rem;
+    background: #1f242d;
+    border: .1rem solid rgba(255, 255, 255, 0.05);
+}
+
+/* 5. Sticky Close Exit Controller Element */
+.modal-close {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    font-size: 3.5rem;
+    color: var(--text-color, #fff);
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--main-color, #00eeff);
+    transform: rotate(90deg); /* Playful rotating interactive anchor shift */
+}
+
+/* ==========================================================================
+   ANIMATION & RESPONSIVENESS CAPABILITIES
+   ========================================================================== */
+
+/* Zoom-in bounce entrance animation */
+@keyframes zoomInModal {
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Mobile & Tablet Adaptations */
+@media (max-width: 768px) {
+    .modal-content-wrapper {
+        padding: 3rem 2rem 2.5rem;
+        border-radius: 1.5rem;
+    }
+
+    #modal-title, 
+    .modal-secured-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-img {
+        max-height: 35rem;
+    }
+
+    .modal-close {
+        top: 1.5rem;
+        right: 2rem;
+        font-size: 3rem;
+    }
+}
+.tech-badge {
+    background: var(--bg-color);
+    color: var(--main-color);
+    padding: 0.5rem 1.5rem;
+    font-size: 1.3rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    border: 1px solid var(--main-color);
+}
+
+/* --- Footer --- */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--second-bg-color);
+}
+
+.footer-text p {
+    font-size: 1.6rem;
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
+    transition: .5s ease;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: #fff;
+}
+
+/* --- Custom CSS Engine Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* =========================================================================
+   CERTIFICATE TOGGLE TRIDGERS OVERRIDE CORE (FIXED COLOR & ACCENT)
+   ========================================================================= */
+.view-cert-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+    background: transparent !important;
+    border: .2rem solid var(--main-color) !important; /* Uses your explicit #0ef neon theme color */
+    color: var(--main-color) !important;              
+    padding: 0.6rem 1.6rem !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    border-radius: 4rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* Force everything inside the button to match your original design rules */
+.view-cert-btn span,
+.view-cert-btn i {
+    color: var(--main-color) !important;
+    font-size: 1.4rem !important;
+    display: inline-block !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.btn-thumbnail {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 8px;
+    background: transparent; /* Ensures no default black background shows up */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* HOVER STATES: Solid color background layout flip */
+.view-cert-btn:hover {
+    background: var(--main-color) !important;
+    box-shadow: 0 0 1.5rem var(--main-color) !important;
+}
+
+.view-cert-btn:hover span,
+.view-cert-btn:hover i {
+    color: #1f242d !important; /* Flips dark text cleanly over bright neon background */
+}
+
+
+/* Enhances thumbnail presentation when hovering over the button */
+.view-cert-btn:hover .btn-thumbnail {
+    transform: scale(1.1);
+    border-color: #1f242d;      
+}
+
+.view-cert-btn i {
+    font-size: 1.5rem;
+}
+
+.view-cert-btn:hover {
+    background: var(--main-color);
+    color: #1f242d; 
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.animate-fade-in {
+    animation: slideDown 1s ease forwards;
+}
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-animate.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Breakpoint Media Queries --- */
+@media (max-width: 1200px) {
+    html { font-size: 55%; }
+}
+
+@media (max-width: 991px) {
+    .header { padding: 2rem 3%; }
+    section { padding: 10rem 3% 2rem; }
+    .footer { padding: 2rem 3%; }
+}
+
+@media (max-width: 768px) {
+    #menu-icon { display: block; }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0,0,0,.1);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+        display: none;
+    }
+    .navbar.active { display: block; }
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+    .contact form .input-box input { width: 100%; }
+    .modal-content { padding: 4rem 2rem 2rem; width: 95%; }
+    .modal-img-wrapper { height: 180px; }
+}
+
+@media (max-width: 617px) {
+    .heading { font-size: 3.5rem; }
+}
